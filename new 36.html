@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דוגמאות רקעים יוקרתיים לכרטיסי פרויקטים</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --bg-primary: #0a0a12;
+      --bg-secondary: #12121e;
+      --accent-primary: #8a5cf6;
+      --accent-secondary: #2cb67d;
+      --accent-tertiary: #f43f5e;
+      --text-primary: #ffffff;
+      --text-secondary: #a3b3cc;
+      --card-bg: #1c1c2e;
+      --card-hover: #272740;
+      --card-border: rgba(138, 92, 246, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Heebo', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #12121e 0%, #0a0a12 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      direction: rtl;
+      text-align: right;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+    }
+
+    .styles-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .style-example {
+      margin-bottom: 3rem;
+    }
+
+    .style-info {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .style-description {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    /* דוגמאות הסגנונות */
+
+    /* 1. גרדיאנט עמוק ומעודן */
+    .gradient-deep {
+      background: linear-gradient(135deg, #1f1f2c 0%, #2d2d3f 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+      padding: 1.5rem;
+      height: 250px;
+      position: relative;
+    }
+
+    .gradient-deep:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(138, 92, 246, 0.3);
+    }
+
+    /* 2. רקע כהה עם מסגרת מינימליסטית */
+    .dark-minimalist {
+      background-color: #1a1a24;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid #2a2a3a;
+      transition: all 0.3s ease;
+      padding: 1.5rem;
+      height: 250px;
+      position: relative;
+    }
+
+    .dark-minimalist:hover {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+      border-color: #3a3a4a;
+    }
+
+    .dark-minimalist::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+
+    .dark-minimalist:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* 3. רקע "כרטיס זכוכית" */
+    .glass-card {
+      background: linear-gradient(125deg, rgba(30, 30, 45, 0.7), rgba(20, 20, 35, 0.9));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+      padding: 1.5rem;
+      height: 250px;
+      position: relative;
+    }
+
+    .glass-card:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(138, 92, 246, 0.2);
+      transform: translateY(-10px);
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    }
+
+    /* 4. סגנון "מינימליסטי יוקרתי" */
+    .minimalist-luxury {
+      background-color: #111118;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      border: none;
+      transition: all 0.3s ease;
+      padding: 1.5rem;
+      height: 250px;
+    }
+
+    .minimalist-luxury:hover {
+      transform: translateY(-8px);
+      background-color: #15151f;
+    }
+
+    .minimalist-luxury::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      background: var(--accent-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .minimalist-luxury:hover::before {
+      opacity: 1;
+    }
+
+    /* 5. רקע "מונוכרומטי" */
+    .monochromatic {
+      background-color: #0e0e16;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      border: 1px solid #222235;
+      padding: 1.5rem;
+      height: 250px;
+      position: relative;
+    }
+
+    .monochromatic-image {
+      height: 120px;
+      width: calc(100% - 2rem);
+      margin: 1rem;
+      background-color: #1a1a28;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 0;
+    }
+
+    .monochromatic:hover .monochromatic-image {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(138, 92, 246, 0.3);
+    }
+
+    /* 6. רקע "שיש כהה" */
+    .dark-marble {
+      background: linear-gradient(125deg, #16161e, #1e1e2a);
+      background-image: 
+        linear-gradient(125deg, #16161e, #1e1e2a),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23fff" stroke-width="0.5"/></svg>');
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      padding: 1.5rem;
+      height: 250px;
+      position: relative;
+    }
+
+    .dark-marble:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .dark-marble::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      background: linear-gradient(to right, #a67c00, #f4d258, #a67c00) border-box;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dark-marble:hover::before {
+      opacity: 1;
+    }
+
+    /* תוכן הכרטיסים */
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-content {
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0.2;
+    }
+
+    /* רספונסיביות */
+    @media (max-width: 768px) {
+      .styles-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>דוגמאות רקעים יוקרתיים לכרטיסי פרויקטים</h1>
+    
+    <div class="styles-container">
+      <!-- 1. גרדיאנט עמוק ומעודן -->
+      <div class="style-example">
+        <h2>1. גרדיאנט עמוק ומעודן</h2>
+        <div class="style-info">
+          <div class="style-description">מראה מתוחכם עם מעבר צבעים עמוק בין גוונים כהים</div>
+          <div class="style-description">מתאים ל: פרויקטים יוקרתיים, פיננסים, פורטפוליו צילום</div>
+        </div>
+        <div class="gradient-deep">
+          <div class="card-number">1</div>
+          <h3 class="card-title">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן. הטקסט הזה מדגים איך התוכן ייראה בכרטיס.</div>
+        </div>
+      </div>
+
+      <!-- 2. רקע כהה עם מסגרת מינימליסטית -->
+      <div class="style-example">
+        <h2>2. רקע כהה עם קו אקצנט</h2>
+        <div class="style-info">
+          <div class="style-description">עיצוב נקי ומינימליסטי עם קו אקצנט שמופיע במעבר עכבר</div>
+          <div class="style-description">מתאים ל: עיצוב גרפי, אדריכלות, טכנולוגיה</div>
+        </div>
+        <div class="dark-minimalist">
+          <div class="card-number">2</div>
+          <h3 class="card-title">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן. הטקסט הזה מדגים איך התוכן ייראה בכרטיס.</div>
+        </div>
+      </div>
+
+      <!-- 3. רקע "כרטיס זכוכית" -->
+      <div class="style-example">
+        <h2>3. כרטיס זכוכית</h2>
+        <div class="style-info">
+          <div class="style-description">אפקט זכוכית מודרני עם שכבת טשטוש</div>
+          <div class="style-description">מתאים ל: עיצוב UI/UX, חברות הייטק, חדשנות</div>
+        </div>
+        <div class="glass-card">
+          <div class="card-number">3</div>
+          <h3 class="card-title">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן. הטקסט הזה מדגים איך התוכן ייראה בכרטיס.</div>
+        </div>
+      </div>
+
+      <!-- 4. סגנון "מינימליסטי יוקרתי" -->
+      <div class="style-example">
+        <h2>4. מינימליסטי יוקרתי</h2>
+        <div class="style-info">
+          <div class="style-description">עיצוב מינימליסטי עם קו צבעוני בצד</div>
+          <div class="style-description">מתאים ל: אופנה, מוצרי יוקרה, מיתוג</div>
+        </div>
+        <div class="minimalist-luxury">
+          <div class="card-number">4</div>
+          <h3 class="card-title">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן. הטקסט הזה מדגים איך התוכן ייראה בכרטיס.</div>
+        </div>
+      </div>
+
+      <!-- 5. רקע "מונוכרומטי" -->
+      <div class="style-example">
+        <h2>5. מונוכרומטי עם דגש על תמונות</h2>
+        <div class="style-info">
+          <div class="style-description">כרטיס כהה עם דגש על תמונות וקצוות מעוגלים</div>
+          <div class="style-description">מתאים ל: צילום, אמנות, גלריות</div>
+        </div>
+        <div class="monochromatic">
+          <div class="monochromatic-image"></div>
+          <div class="card-number">5</div>
+          <h3 class="card-title" style="margin-top: 130px;">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן.</div>
+        </div>
+      </div>
+
+      <!-- 6. רקע "שיש כהה" -->
+      <div class="style-example">
+        <h2>6. שיש כהה עם מסגרת זהב</h2>
+        <div class="style-info">
+          <div class="style-description">מראה יוקרתי במיוחד עם טקסטורת שיש ומסגרת זהב עדינה</div>
+          <div class="style-description">מתאים ל: מותגי יוקרה, נדל"ן, תכשיטים</div>
+        </div>
+        <div class="dark-marble">
+          <div class="card-number">6</div>
+          <h3 class="card-title">כותרת הפרויקט</h3>
+          <div class="card-content">תיאור הפרויקט יופיע כאן. הטקסט הזה מדגים איך התוכן ייראה בכרטיס.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

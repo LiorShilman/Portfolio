@@ -1,0 +1,2786 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>תיק העבודות שלי | Portfolio</title>
+	<style>
+	
+	@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* צבעים משודרגים */
+  --bg-primary: #0a0a12;
+  --bg-secondary: #12121e;
+  --accent-primary: #8a5cf6;
+  --accent-secondary: #2cb67d;
+  --accent-tertiary: #f43f5e;
+  --text-primary: #ffffff;
+  --text-secondary: #a3b3cc;
+  --card-bg: #1c1c2e;
+  --card-hover: #272740;
+  --card-border: rgba(138, 92, 246, 0.15);
+  --transition-speed: 0.3s;
+  --glow-color: rgba(138, 92, 246, 0.25);
+  --gradient-bg: linear-gradient(135deg, #12121e 0%, #0a0a12 100%);
+  --box-shadow: 0 10px 30px rgba(10, 10, 18, 0.7);
+  --neon-box-shadow: 0 0 15px rgba(138, 92, 246, 0.5);
+  --card-border-glow: 1px solid rgba(138, 92, 246, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Heebo', sans-serif;
+}
+
+body {
+  background: var(--gradient-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color var(--transition-speed);
+  overflow-x: hidden;
+  line-height: 1.6;
+  direction: rtl;
+  text-align: right;
+}
+
+/* גלילה מותאמת אישית */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* נאבבר משודרג */
+.navbar {
+  background-color: rgba(18, 18, 30, 0.8);
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-speed);
+  border-bottom: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-decoration: none;
+  position: relative;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-primary);
+  bottom: -5px;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.logo:hover::after {
+  transform: scaleX(1);
+}
+
+.logo-accent {
+  color: var(--accent-primary);
+  text-shadow: 0 0 10px var(--glow-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-speed);
+  font-size: 1.1rem;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* תיקון לכפתורים באזור hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-bg); /* וודא שיש רקע מוגדר לאזור ה-hero עצמו */
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  padding: 2rem;
+  z-index: 10;
+  background: transparent; /* וודא שאין רקע שמסתיר */
+}
+
+/* וודא שהמיכל של הכפתורים מוצג נכון */
+.hero-content > div {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap; /* עוזר במובייל */
+  margin-top: 2rem;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  border: 2px solid var(--accent-primary);
+}
+
+.hero-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(138, 92, 246, 0.4);
+}
+
+.hero-btn.secondary:hover {
+  background: rgba(138, 92, 246, 0.1);
+}
+
+/* סידור אייקון בטקסט RTL */
+.hero-btn svg {
+  margin-right: 0.5rem;
+  margin-left: 0;
+  transition: transform 0.3s ease;
+}
+
+.hero-btn:hover svg {
+  transform: translateX(-3px);
+}
+
+/* תיקון עבור מסכי מובייל */
+@media (max-width: 768px) {
+  .hero-content > div {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-btn {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+/* וודא שהרקע מגדיר היטב את הסקשן */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-bg);
+  z-index: -2;
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(138, 92, 246, 0.5);
+  animation: particle-float 10s infinite ease-in-out;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px) scale(1.2);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-70px) translateX(-10px) scale(0.8);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-30px) translateX(-20px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+  animation: fadeIn 1.2s ease-out;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-title {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary) 50%, var(--accent-tertiary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  position: relative;
+  text-shadow: 0 0 15px var(--glow-color);
+}
+
+.hero-subtitle {
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-btn {
+  display: inline-block;
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin: 0 0.8rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.hero-btn:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 25px rgba(138, 92, 246, 0.4);
+}
+
+.hero-btn:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.8s ease;
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  border: 2px solid var(--accent-primary);
+}
+
+.hero-btn.secondary:hover {
+  background: rgba(138, 92, 246, 0.1);
+  box-shadow: 0 12px 25px rgba(138, 92, 246, 0.2);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+  cursor: pointer;
+}
+
+.scroll-indicator svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+  transition: stroke 0.3s ease;
+}
+
+.scroll-indicator:hover svg {
+  stroke: var(--accent-primary);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-25px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+/* קטגוריות משודרגות */
+.categories {
+  padding: 7rem 5%;
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.categories::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--text-primary), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  height: 6px;
+  width: 60%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  bottom: -15px;
+  right: 0;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px rgba(138, 92, 246, 0.3);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.tab {
+  padding: 1rem 2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab:hover {
+  background: var(--card-hover);
+  color: var(--text-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tab.active {
+  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-primary);
+  box-shadow: 0 7px 20px rgba(138, 92, 246, 0.4);
+}
+
+
+
+/* גלריית פרויקטים משודרגת */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: linear-gradient(135deg, #1f1f2c 0%, #2d2d3f 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(138, 92, 246, 0.3);
+}
+
+/* תוספת של אפקט לבן דק בחלק העליון שנותן מראה של זכוכית */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+}
+.project-card:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* מירכוז תמונות הפרויקטים */
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 350px; /* גובה קבוע או מותאם לצרכים שלך */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg); /* צבע רקע למקרה שהתמונה לא מכסה הכל */
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* שומר על יחס הצד של התמונה */
+  object-position: center; /* ממרכז את התמונה */
+  transition: transform 0.7s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+/* אפקט מעבר עכבר לתמונה */
+.project-card:hover .project-image {
+  transform: scale(1.05); /* הגדלה קלה בעת מעבר עכבר */
+}
+
+/* תיקון במקרה שצריך לתמונות עם רקע לבן/בהיר */
+.project-image[src*="png"],
+.project-image[src*="svg"] {
+  background-color: transparent; /* להתאים לפי הצורך */
+  padding: 1rem; /* מרווח פנימי */
+}
+
+.project-content {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.5s ease;
+  z-index: 2;
+}
+
+.project-category {
+  color: var(--accent-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(138, 92, 246, 0.1);
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.project-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-tertiary);
+  transition: width 0.3s ease;
+}
+
+.project-card:hover .project-title::after {
+  width: 100%;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.project-link::after {
+  content: '←';
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+  color: var(--accent-secondary);
+  transform: translateX(5px);
+}
+
+.project-link:hover::after {
+  transform: translateX(5px);
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+
+.action-btn {
+  border: none;
+  background: rgba(138, 92, 246, 0.1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.action-btn:hover {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(138, 92, 246, 0.3);
+}
+
+.action-btn.edit-btn:hover {
+  background: var(--accent-secondary);
+}
+
+.action-btn.delete-btn:hover {
+  background: var(--accent-tertiary);
+}
+
+.action-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.action-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* כפתור הוספת פרויקט משודרג */
+.add-project-btn {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 5px 20px rgba(138, 92, 246, 0.5);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+.add-project-btn:hover {
+  transform: scale(1.1) rotate(45deg);
+  box-shadow: 0 8px 25px rgba(138, 92, 246, 0.7);
+}
+
+.add-project-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-primary);
+  opacity: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { 
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* מודאלים משודרגים */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(-70px) scale(0.95);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  border: 1px solid rgba(138, 92, 246, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  direction: rtl;
+  text-align: right;
+}
+
+.modal.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-modal:hover {
+  color: var(--accent-tertiary);
+  background: rgba(244, 63, 94, 0.1);
+  transform: rotate(90deg);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--accent-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(138, 92, 246, 0.2);
+}
+
+.form-input::placeholder, .form-textarea::placeholder, .form-select::placeholder {
+  color: rgba(163, 179, 204, 0.5);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-primary);
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(138, 92, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.submit-btn:hover {
+  box-shadow: 0 8px 25px rgba(138, 92, 246, 0.5);
+  transform: translateY(-3px);
+}
+
+.submit-btn:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.8s ease;
+}
+
+/* פוטר משודרג */
+.footer {
+  background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+  padding: 5rem 5% 3rem;
+  margin-top: 7rem;
+  position: relative;
+  border-top: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-title {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 40px;
+  background: var(--accent-primary);
+  bottom: -10px;
+  right: 0;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px rgba(138, 92, 246, 0.3);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-link {
+  margin-bottom: 1rem;
+}
+
+.footer-link a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+.footer-link a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  right: 0;
+  background: var(--accent-primary);
+  transition: width 0.3s ease;
+}
+
+.footer-link a:hover {
+  color: var(--accent-primary);
+  transform: translateX(5px);
+}
+
+.footer-link a:hover::after {
+  width: 100%;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  border: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.social-link:hover {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(138, 92, 246, 0.4);
+}
+
+.social-link svg {
+ width: 22px;
+ height: 22px;
+ transition: transform 0.3s ease;
+}
+
+.social-link:hover svg {
+ transform: scale(1.2);
+}
+
+.social-link::before {
+ content: '';
+ position: absolute;
+ top: -2px;
+ left: -2px;
+ right: -2px;
+ bottom: -2px;
+ border-radius: 50%;
+ border: 1px solid var(--accent-primary);
+ opacity: 0;
+ transition: opacity 0.3s ease;
+}
+
+.social-link:hover::before {
+ opacity: 1;
+ animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+ 0% {
+   transform: scale(1);
+   opacity: 0.5;
+ }
+ 70% {
+   transform: scale(1.3);
+   opacity: 0;
+ }
+ 100% {
+   transform: scale(1);
+   opacity: 0;
+ }
+}
+
+.copyright {
+ text-align: center;
+ padding: 2rem 0 0;
+ color: var(--text-secondary);
+ border-top: 1px solid rgba(138, 92, 246, 0.1);
+ margin-top: 3rem;
+ font-size: 0.95rem;
+}
+
+.copyright span {
+ color: var(--accent-primary);
+}
+
+/* אלמנטים נוספים משודרגים */
+.edit-modal-title {
+ color: var(--accent-secondary);
+ margin-bottom: 2rem;
+ font-size: 2rem;
+ font-weight: 700;
+ position: relative;
+}
+
+.edit-modal-title::after {
+ content: '';
+ position: absolute;
+ bottom: -10px;
+ right: 0;
+ width: 100px;
+ height: 3px;
+ background: linear-gradient(90deg, var(--accent-secondary), transparent);
+}
+
+.delete-confirmation {
+ background: rgba(244, 63, 94, 0.1);
+ padding: 1.5rem;
+ border-radius: 12px;
+ margin-bottom: 2rem;
+ border-right: 4px solid var(--accent-tertiary);
+}
+
+.delete-confirmation h3 {
+ color: var(--accent-tertiary);
+ margin-bottom: 0.8rem;
+ font-weight: 700;
+}
+
+.delete-confirmation p {
+ color: var(--text-secondary);
+ font-size: 0.95rem;
+}
+
+.delete-actions {
+ display: flex;
+ gap: 1.5rem;
+ justify-content: flex-start;
+ margin-top: 2rem;
+}
+
+.cancel-btn {
+ background: var(--bg-secondary);
+ color: var(--text-secondary);
+ border: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.cancel-btn:hover {
+ background: var(--card-hover);
+ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ transform: translateY(-3px);
+}
+
+.confirm-delete-btn {
+ background: var(--accent-tertiary);
+}
+
+.confirm-delete-btn:hover {
+ box-shadow: 0 5px 15px rgba(244, 63, 94, 0.4);
+}
+
+/* מערכת הודעות משודרגת */
+.notification {
+ position: fixed;
+ top: 30px;
+ left: 50%;
+ transform: translateX(-50%);
+ z-index: 2000;
+ border-radius: 12px;
+ overflow: hidden;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+ animation: slideDown 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.notification-content {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 1rem 1.5rem;
+ background: rgba(28, 28, 46, 0.9);
+ color: var(--text-primary);
+ min-width: 300px;
+}
+
+.notification.success .notification-content {
+ border-right: 4px solid var(--accent-secondary);
+}
+
+.notification.success::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ width: 4px;
+ background: var(--accent-secondary);
+ animation: pulse-light 1.5s infinite;
+}
+
+.notification.error .notification-content {
+ border-right: 4px solid var(--accent-tertiary);
+}
+
+.notification.error::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ width: 4px;
+ background: var(--accent-tertiary);
+ animation: pulse-light 1.5s infinite;
+}
+
+.notification.info .notification-content {
+ border-right: 4px solid var(--accent-primary);
+}
+
+.notification.info::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ width: 4px;
+ background: var(--accent-primary);
+ animation: pulse-light 1.5s infinite;
+}
+
+@keyframes pulse-light {
+ 0% {
+   opacity: 0.6;
+ }
+ 50% {
+   opacity: 1;
+ }
+ 100% {
+   opacity: 0.6;
+ }
+}
+
+.notification-message {
+ display: flex;
+ align-items: center;
+ direction: rtl;
+}
+
+.notification-message span {
+ margin-right: 1rem;
+}
+
+.notification-message svg {
+ margin-left: 1rem;
+ width: 20px;
+ height: 20px;
+}
+
+.notification-close {
+ margin-right: 0;
+ background: none;
+ border: none;
+ color: var(--text-secondary);
+ cursor: pointer;
+ font-size: 1.2rem;
+ transition: all 0.3s ease;
+ width: 30px;
+ height: 30px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 50%;
+}
+
+.notification-close:hover {
+ color: var(--text-primary);
+ background: rgba(255, 255, 255, 0.1);
+ transform: rotate(90deg);
+}
+
+@keyframes slideDown {
+ from {
+   transform: translate(-50%, -50px);
+   opacity: 0;
+ }
+ to {
+   transform: translate(-50%, 0);
+   opacity: 1;
+ }
+}
+
+/* אנימציות משודרגות */
+@keyframes fadeIn {
+ from {
+   opacity: 0;
+   transform: translateY(30px);
+ }
+ to {
+   opacity: 1;
+   transform: translateY(0);
+ }
+}
+
+/* אנימציית גלילה משודרגת */
+.fadeIn {
+ opacity: 0;
+ transform: translateY(40px);
+ transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fadeIn.visible {
+ opacity: 1;
+ transform: translateY(0);
+}
+
+/* תפריט מובייל משודרג */
+.mobile-menu-btn {
+ background: none;
+ border: none;
+ color: var(--text-primary);
+ font-size: 1.5rem;
+ cursor: pointer;
+ display: none;
+ width: 45px;
+ height: 45px;
+ border-radius: 50%;
+ transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+ background: rgba(138, 92, 246, 0.1);
+}
+
+.mobile-menu-btn svg {
+ stroke: var(--text-primary);
+ stroke-width: 2;
+ transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover svg {
+ stroke: var(--accent-primary);
+}
+
+.mobile-menu {
+ position: fixed;
+ top: 0;
+ right: -100%;
+ width: 80%;
+ height: 100vh;
+ background: var(--card-bg);
+ z-index: 1100;
+ padding: 2.5rem;
+ transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+ display: flex;
+ flex-direction: column;
+ box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+ border-left: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+.mobile-menu.active {
+ right: 0;
+}
+
+.mobile-menu-close {
+ align-self: flex-end;
+ background: none;
+ border: none;
+ color: var(--text-secondary);
+ font-size: 1.5rem;
+ margin-bottom: 2.5rem;
+ cursor: pointer;
+ width: 45px;
+ height: 45px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 50%;
+ transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+ color: var(--accent-tertiary);
+ background: rgba(244, 63, 94, 0.1);
+ transform: rotate(90deg);
+}
+
+.mobile-nav-links {
+ list-style: none;
+}
+
+.mobile-nav-link {
+ margin-bottom: 2rem;
+}
+
+.mobile-nav-link a {
+ color: var(--text-primary);
+ text-decoration: none;
+ font-size: 1.5rem;
+ font-weight: 600;
+ display: block;
+ padding: 0.8rem 0;
+ position: relative;
+ transition: all 0.3s ease;
+}
+
+.mobile-nav-link a::after {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 0;
+ height: 2px;
+ background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+ transition: width 0.3s ease;
+}
+
+.mobile-nav-link a:hover {
+ color: var(--accent-primary);
+ transform: translateX(10px);
+}
+
+.mobile-nav-link a:hover::after {
+ width: 100%;
+}
+
+.overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.7);
+ backdrop-filter: blur(5px);
+ z-index: 1050;
+ opacity: 0;
+ visibility: hidden;
+ transition: all 0.4s ease;
+}
+
+.overlay.active {
+ opacity: 1;
+ visibility: visible;
+}
+
+/* רספונסיביות משודרגת */
+@media (max-width: 1200px) {
+ .hero-title {
+   font-size: 4rem;
+ }
+ 
+ .section-title {
+   font-size: 2.5rem;
+ }
+ 
+ .projects-grid {
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+ }
+}
+
+@media (max-width: 768px) {
+ .hero-title {
+   font-size: 3.5rem;
+ }
+ 
+ .hero-subtitle {
+   font-size: 1.3rem;
+ }
+ 
+ .nav-links {
+   display: none;
+ }
+ 
+ .mobile-menu-btn {
+   display: block;
+ }
+ 
+ .project-card {
+   transform-style: flat;
+ }
+ 
+ .project-card:hover {
+   transform: translateY(-10px) rotateX(0);
+ }
+ 
+ .tabs {
+   flex-wrap: nowrap;
+   overflow-x: auto;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+   padding-bottom: 1rem;
+ }
+ 
+ .tabs::-webkit-scrollbar {
+   display: none;
+ }
+ 
+ .tab {
+   flex: 0 0 auto;
+ }
+}
+
+@media (max-width: 480px) {
+ .hero-title {
+   font-size: 2.8rem;
+ }
+ 
+ .section-title {
+   font-size: 2rem;
+ }
+ 
+ .projects-grid {
+   grid-template-columns: 1fr;
+ }
+ 
+ .modal-content {
+   padding: 2rem;
+ }
+ 
+ .hero-btn {
+   padding: 0.8rem 1.5rem;
+   font-size: 0.95rem;
+   display: block;
+   width: 100%;
+   margin: 0.5rem 0;
+ }
+}
+
+/* תיקוני RTL נוספים */
+.hero-title::before, .hero-title::after {
+ right: 0;
+ left: 0;
+ direction: rtl;
+}
+
+.hero-btn svg {
+ margin-right: 0.5rem;
+}
+
+/* תיקון עיצוב כפתורי פעולה */
+.action-button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg-primary); /* לשים את אותו רקע כמו בשאר האתר */
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.action-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.contact-button {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  border: none;
+}
+
+.view-button {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(138, 92, 246, 0.3);
+}
+
+/* אם הכפתורים צריכים להיות חלק מהגיבור */
+.hero .action-buttons {
+  margin-top: 2rem;
+}
+
+
+	</style>
+</head>
+
+<body>
+	<!-- נאבבר -->
+	<nav class="navbar">
+		<div class="navbar-content">
+			<a href="#" class="logo">
+				<span>תיק</span>
+				<span class="logo-accent">העבודות</span>
+			</a>
+			<div class="nav-links">
+				<a href="#" class="nav-link">בית</a>
+				<a href="#projects" class="nav-link">פרויקטים</a>
+				<a href="#categories" class="nav-link">קטגוריות</a>
+				<a href="#contact" class="nav-link">צור קשר</a>
+			</div>
+			<button class="mobile-menu-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<line x1="3" y1="12" x2="21" y2="12"></line>
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<line x1="3" y1="18" x2="21" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	<!-- תפריט מובייל -->
+	<div class="mobile-menu">
+		<button class="mobile-menu-close">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+		<ul class="mobile-nav-links">
+			<li class="mobile-nav-link"><a href="#">בית</a></li>
+			<li class="mobile-nav-link"><a href="#projects">פרויקטים</a></li>
+			<li class="mobile-nav-link"><a href="#categories">קטגוריות</a></li>
+			<li class="mobile-nav-link"><a href="#contact">צור קשר</a></li>
+		</ul>
+	</div>
+	<div class="overlay"></div>
+
+	<!-- גיבור / כותרת ראשית -->
+	<section class="hero">
+		<div class="hero-bg"></div>
+		<div class="particles-container" id="particles-js"></div>
+		<div class="hero-content">
+			<h1 class="hero-title" data-text="תיק העבודות שלי">תיק העבודות שלי</h1>
+			<p class="hero-subtitle">אוסף הפרויקטים והאתרים שיצרתי במהלך הקריירה שלי</p>
+			<div>
+				<button class="hero-btn animated-icon">
+					צפה בעבודות
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M15 3h6v6"></path>
+						<path d="M10 14L21 3"></path>
+						<path d="M18 13v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h7"></path>
+					</svg>
+				</button>
+				<a href="#contact" class="hero-btn secondary">צור קשר</a>
+			</div>
+		</div>
+		<div class="scroll-indicator">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+				stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M12 5v14M19 12l-7 7-7-7" />
+			</svg>
+		</div>
+	</section>
+
+	<!-- קטגוריות -->
+	<section class="categories" id="categories">
+		<h2 class="section-title">קטגוריות</h2>
+		<div class="tabs">
+			<button class="tab active" data-category="All">הכל</button>
+			<button class="tab" data-category="Finance">פיננסי</button>
+			<button class="tab" data-category="KnowledgeBase">מקורות ידע</button>
+			<button class="tab" data-category="Games">משחקים</button>
+			<button class="tab" data-category="Private">אישי</button>
+			<button class="tab" data-category="General">כללי</button>
+		</div>
+
+		<!-- פרויקטים - יתמלא דינמית על ידי JavaScript -->
+		<div class="projects-grid" id="projects">
+			<!-- הפרויקטים יתווספו כאן באמצעות JavaScript -->
+		</div>
+	</section>
+
+	<!-- כפתור להוספת פרויקט -->
+	<!-- <div class="add-project-btn">+</div> -->
+
+	<!-- מודאל להוספת פרויקט -->
+	<div class="modal" id="add-project-modal">
+		<div class="modal-content">
+			<button class="close-modal">&times;</button>
+			<h2>הוספת פרויקט חדש</h2>
+			<form id="add-project-form">
+				<div class="form-group">
+					<label class="form-label" for="project-title">שם הפרויקט</label>
+					<input type="text" id="project-title" class="form-input" required>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="project-category">קטגוריה</label>
+					<select id="project-category" class="form-select" required>
+						<option value="">בחר קטגוריה</option>
+						<option value="Finance">פיננסי</option>
+						<option value="KnowledgeBase">מקורות ידע</option>
+						<option value="Games">משחקים</option>
+						<option value="Private">אישי</option>
+						<option value="General">כללי</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="project-image">תמונה (URL)</label>
+					<input type="url" id="project-image" class="form-input" placeholder="הכנס קישור לתמונה" required>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="project-description">תיאור</label>
+					<textarea id="project-description" class="form-textarea" required></textarea>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="project-url">קישור לאתר</label>
+					<input type="url" id="project-url" class="form-input" required>
+				</div>
+				<button type="submit" class="submit-btn">הוסף פרויקט</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- מודאל לעריכת פרויקט -->
+	<div class="modal" id="edit-project-modal">
+		<div class="modal-content">
+			<button class="close-modal">&times;</button>
+			<h2 class="edit-modal-title">עריכת פרויקט</h2>
+			<form id="edit-project-form">
+				<input type="hidden" id="edit-project-id">
+				<div class="form-group">
+					<label class="form-label" for="edit-project-title">שם הפרויקט</label>
+					<input type="text" id="edit-project-title" class="form-input" required>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="edit-project-category">קטגוריה</label>
+					<select id="edit-project-category" class="form-select" required>
+						<option value="">בחר קטגוריה</option>
+						<option value="Finance">פיננסי</option>
+						<option value="KnowledgeBase">מקורות ידע</option>
+						<option value="Games">משחקים</option>
+						<option value="Private">אישי</option>
+						<option value="General">כללי</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="edit-project-image">תמונה (URL)</label>
+					<input type="url" id="edit-project-image" class="form-input" required>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="edit-project-description">תיאור</label>
+					<textarea id="edit-project-description" class="form-textarea" required></textarea>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="edit-project-url">קישור לאתר</label>
+					<input type="url" id="edit-project-url" class="form-input" required>
+				</div>
+				<button type="submit" class="submit-btn">שמור שינויים</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- מודאל למחיקת פרויקט -->
+	<div class="modal" id="delete-project-modal">
+		<div class="modal-content">
+			<button class="close-modal">&times;</button>
+			<div class="delete-confirmation">
+				<h3>האם אתה בטוח שברצונך למחוק את הפרויקט?</h3>
+				<p>פעולה זו אינה ניתנת לביטול.</p>
+			</div>
+			<div class="delete-actions">
+				<button class="submit-btn cancel-btn" id="cancel-delete">ביטול</button>
+				<button class="submit-btn confirm-delete-btn" id="confirm-delete">כן, מחק פרויקט</button>
+			</div>
+		</div>
+	</div>
+
+
+	<footer class="footer" id="contact">
+		<div class="footer-content">
+			<div class="footer-section">
+				<h3 class="footer-title">תיק העבודות שלי</h3>
+				<p>אוסף של פרויקטים ואתרים שיצרתי במהלך הקריירה שלי. מוזמנים ליצור קשר לשיתופי פעולה או הצעות עבודה.</p>
+				<div class="footer-social">
+					<a href="#" class="social-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+						</svg>
+					</a>
+					<a href="#" class="social-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+							<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+							<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+						</svg>
+					</a>
+					<a href="#" class="social-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+							</path>
+							<rect x="2" y="9" width="4" height="12"></rect>
+							<circle cx="4" cy="4" r="2"></circle>
+						</svg>
+					</a>
+					<a href="#" class="social-link">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path
+								d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+							</path>
+						</svg>
+					</a>
+				</div>
+			</div>
+			<div class="footer-section">
+				<h3 class="footer-title">קישורים מהירים</h3>
+				<ul class="footer-links">
+					<li class="footer-link"><a href="#">בית</a></li>
+					<li class="footer-link"><a href="#projects">פרויקטים</a></li>
+					<li class="footer-link"><a href="#categories">קטגוריות</a></li>
+					<li class="footer-link"><a href="#contact">צור קשר</a></li>
+				</ul>
+			</div>
+			<div class="footer-section">
+				<h3 class="footer-title">צור קשר</h3>
+				<ul class="footer-links">
+					<li class="footer-link">מייל: shilmanlior@gmail.com</li>
+					<li class="footer-link">טלפון: 052-2626385</li>
+					<li class="footer-link">כתובת: ישראל</li>
+				</ul>
+			</div>
+		</div>
+		<div class="copyright">
+			&copy; 2025 תיק העבודות שלי. כל הזכויות שמורות.
+		</div>
+	</footer>
+
+	<!-- סקריפט JavaScript -->
+	<script>
+		// מערך הפרויקטים
+		let projects = [
+			{
+				title: "הבינה הכלכלית",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "תהליך הקמת קבוצת וואטסאפ שמשלבת ידע פיננסי, בינה מלאכותית וחשיבה מתקדמת - המנוע שיניע את הצמיחה העסקית שלך.",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/הבינה הכלכלית.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/%D7%94%D7%91%D7%99%D7%A0%D7%94%20%D7%94%D7%9B%D7%9C%D7%9B%D7%9C%D7%99%D7%AA/%D7%94%D7%91%D7%99%D7%A0%D7%94%20%D7%94%D7%9B%D7%9C%D7%9B%D7%9C%D7%99%D7%AA.html"
+			},
+			{
+				title: "מחשבון רמה פיננסית",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "חמש הרמות שישנו לכם את החיים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מחשבון רמה פיננסית.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/FinancialCalculator/FinancialCalculator.html"
+			},
+			{
+				title: "מחשבון שכר דינמי",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "כל מה שהשכר שלך יכול לספר לך",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מחשבון שכר דינמי.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Salary/Salary.html"
+			},
+			{
+				title: "סקטורים להשקעה - מדריך תעודות סל",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "השוואה בין תעודות סל בישראל וארה\"ב לפי סקטורים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/ETF.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/ETF/ETF.html"
+			},
+			{
+				title: "פרוטוקול שפע - הגירוש מגן עדן",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "הספר מתאר את תודעת השפע תוך שימוש בקודים תודעתיים רוחניים, המבוססים על רעיונות מעמיקים ועמוקים של הבריאה והתפתחות האדם. כל יום בשבוע מתייחס לתהליך של בריאה והתחברות לשפע, כאשר לכל שלב בבריאה יש קודים רלוונטיים, דגשים, ושרטוטים המבטאים את העקרונות הרוחניים של השפע.",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/פרוטוקול שפע.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/AbundanceConsciousness/AbundanceConsciousness.html"
+			},
+			{
+				title: "מחשבון שף",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "ניהול ותמחור מנות",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מחשבון שף.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Chef/ChefCalculator.html"
+			},
+			{
+				title: "ציטוטים פיננסיים והתובנות שמאחוריהם",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "אוסף של ציטוטים מעוררי השראה בנושאי כלכלה וניהול פיננסי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/FinancialQuotes.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/FinancialQuotes/FinancialQuotes.html"
+			},
+			{
+				title: "המדריך המלא למידג'ורני V6.1",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "כל הפקודות, הטכניקות והטיפים שצריך לדעת",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Midjorny.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Midjorny/Midjorny.html"
+			},
+			{
+				title: "סודוקו",
+				category: "Games",
+				categoryHebrew: "משחקים",
+				description: "סודוקו אונליין",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/סודוקו.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Sudoku/Sudoku.html"
+			},
+			{
+				title: "יוצר הפאזלים",
+				category: "Games",
+				categoryHebrew: "משחקים",
+				description: "יוצר פאזלים מתמונות אונליין",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Puzzle.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Puzzle/Puzzle.html"
+			},
+			{
+				title: "Vision Board",
+				category: "Games",
+				categoryHebrew: "משחקים",
+				description: "בנה לוח חזון לחלומות שלך",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/VisionBoard.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/VisionBoard/VisionBoard.html"
+			},
+			{
+				title: "פיענוח האישיות שלי",
+				category: "Private",
+				categoryHebrew: "אישי",
+				description: "חשיפה מעמיקה של מי שאני באמת, דרך המשקפיים של מישהו שרואה אותי כפי שאני",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/פיענוח האישיות שלי.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/AllAboutMe/AllAboutMe.html"
+			},
+			{
+				title: "נומרולוגיה",
+				category: "General",
+				categoryHebrew: "כללי",
+				description: "המפה הנומרולגית שלי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מפת הנומרולוגיה שלי.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Numerology/LiorFull.html"
+			},
+			{
+				title: "ציטוטי ספרים",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "ציטוטי ספרים החשובים ביותר מכל הזמנים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Books.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Books/Books.html"
+			},
+			{
+				title: "קורס הכנה להסמכת CFP בישראל",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "הדרך שלך להפוך למתכנן פיננסי מוסמך",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/CFP.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/CFP/CFP.html"
+			},
+			{
+				title: "חינוך פיננסי משפחתי",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "גלו כיצד לנהל את הכספים המשפחתיים בצורה חכמה ואחראית",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/FinancialEducation.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/FinancialEducation/FinancialEducation.html"
+			},
+			{
+				title: "צ'ק ליסט - לעיסקה",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "מה אני בודק לפני כניסה לעסקת טרייד",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/CheckList.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/CheckList/CheckList.html"
+			},
+			{
+				title: "ניתוח פסיכולוגי",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "ניתוח פסיכולוגי מעמיק ויישום עקרון פארטו",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Pareto.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Pareto2080/Pareto.html"
+			},
+			{
+				title: "NINJA MASTER",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "למד איך להכין להשתמש בנינג'ה שלך כמו שף אמיתי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/NinjaMaster.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Ninja/NinjaMaster.html"
+			},
+			{
+				title: "תהליך ניתוח וניהול עסקה",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "נתח עיסקת מטח כמו מקצוען",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/ניהול עיסקה.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/ManagedTransactions/ניהול%20עיסקה.html"
+			},
+			{
+				title: "דירה מול שוק ההון",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "השוואת הון עצמי - דירה מול שוק ההון",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Equity.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Equity/Equity.html"
+			},
+			{
+				title: "ספר שירים אישי",
+				category: "Private",
+				categoryHebrew: "אישי",
+				description: "ספר השירים האישי שלי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Songs.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Songs/Songs.html"
+			},
+			{
+				title: "מדריך קריפטו",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "כל מה שרצית לדעת על מטבעות קריפטוגרפים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Crypto.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Crypto/index.html"
+			},
+			{
+				title: "הטיות קוגניטיביות בהשקעות",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "מדריך מקיף להבנת ההטיות המשפיעות על החלטות השקעה",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/CognitiveBiases.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/CognitiveBiases/CognitiveBiases.html"
+			},
+			{
+				title: "מדריך פיננסי מקיף",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "מדריך מקיף לכלכלת המשפחה",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/FinancialGuide.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/FinancialGuide/FinancialGuide.html"
+			},
+			{
+				title: "ניתוח פיננסי מפורט",
+				category: "Private",
+				categoryHebrew: "אישי",
+				description: "ניצוח פיננסי מפורט אישי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/FinanceReport.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/FinanceReport/FinanceReport.html"
+			},
+			{
+				title: "מערכת אופק פיננסי 360°",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "רשת של 17 יועצים פיננסיים מומחים המשלבים כוחות בגישה הוליסטית מותאמת אישית, מובנית ומקיפה לתכנון פיננסי לאורך כל מעגל החיים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מערכת אופק 360.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Pensia/מערכת%20אופק%20פיננסי%20360.html"
+			},
+			{
+				title: "לוח בקרה פיננסי",
+				category: "Private",
+				categoryHebrew: "אישי",
+				description: "ניהול ההשקעות האישי שלי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/FinanceDashboard.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/FinanceDashboard/dashboard"
+			},
+			{
+				title: "L.S - ייעוץ לכלכלת המשפחה בעזרת - AI",
+				category: "Private",
+				categoryHebrew: "אישי",
+				description: "ניהול תיקי ייעוץ לכלכלת המשפחה",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/LsFinanceAdvisor.png",
+				projectUrl: "https://shilmanlior2608.ddns.net:8443/LsFinanceAdvisor"
+			},
+			{
+				title: "AI Tools Collection",
+				category: "General",
+				categoryHebrew: "כללי",
+				description: "ניהול תיקי ייעוץ לכלכלת המשפחה",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Website.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Website.html"
+			},
+			{
+				title: "מדוייקת",
+				category: "Games",
+				categoryHebrew: "משחקים",
+				description: "גלה את המילה המסתתרת",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Meduyeket.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Meduyeket/index.html"
+			},
+			{
+				title: "RTI Pro+",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "מדריך מקיף RTI Pro+",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/RTI_D9.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/RtiD9/RTI_D9_Indicator.html"
+			},
+			{
+				title: "קיטו שף",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "מייצר הארוחות שלי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/KetoRecipes.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/KetoRecipes"
+			},
+			{
+				title: "לימוד אנגלית אונליין",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "לימוד אנגלית בעזרת AI",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/EnglishLearning.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/EnglishLearning"
+			},
+			{
+				title: "אתר המידע שלי",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "לימוד כל נושא ותחום בעזרת AI",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Tested.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Tested/Main.html"
+			},
+			{
+				title: "יועץ פיננסי חכם",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "סימולטור פיננסי חכם שמבצע חישובים, מדמה תרחישים, ומסביר בעברית פשוטה איך לנהל נכון משכנתא, חיסכון, פנסיה ותקציב.",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/AiFinance.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/AiFinanceApp/index.html"
+			},
+			{
+				title: "בין ביס לביס",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "תובנות יומיות לחיים מעמיקים יותר",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Posts.jpg",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Posts/Posts.html"
+			},
+			{
+				title: "פלטפורמת הקורסים המודולרית",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "ריכוז כל מקורות הידע שלי - קורסים",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Courses.jpg",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/פלטפורמת הקורסים שלי/פלטפורמת הקורסים שלי.html"
+			},
+			{
+				title: "חכמים עם כסף",
+				category: "KnowledgeBase",
+				categoryHebrew: "מקורות ידע",
+				description: "ספר דיגיטלי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/DigitalBook.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/ChildrenBook/DigitalFinancialBook.html"
+			},
+			{
+				title: "מחשבון פיננסי אסטרטגי",
+				category: "Finance",
+				categoryHebrew: "פיננסי",
+				description: "כלי מקצועי לניהול מטרות חיסכון ותכנון עתידי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/מחשבון פיננסי אסטרטגי.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/GoalsFinancialCalculator/GoalsFinancialCalculator.html?"
+			},
+			{
+				title: "Proffesional Song Editor",
+				category: "General",
+				categoryHebrew: "כללי",
+				description: "עורך שירים מקצועי",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/SongEditor.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:18000/MusicVideoEditor/song-editor"
+			},
+			{
+				title: "Alias Digital Game",
+				category: "Games",
+				categoryHebrew: "משחקים",
+				description: "אליאס",
+				imageUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Portfolio/Alias.png",
+				projectUrl: "http://shilmanlior2608.ddns.net:8080/Serving/AI/Alias/Alias.html"
+			}
+
+		];
+
+		// אתחול המסמך
+		document.addEventListener('DOMContentLoaded', function() {
+		
+			// עדכון מזהי הפרויקטים
+			regenerateProjectIds();
+	
+			// יצירת חלקיקים רקע
+			createParticles();
+			
+			// הצגת הפרויקטים
+			displayProjects(projects);
+			
+			// אתחול טאבים לקטגוריות
+			initializeTabs();
+			
+			// אתחול מודאלים
+			initializeModals();
+			
+			// אתחול תפריט נייד
+			initializeMobileMenu();
+			
+			// אתחול גלילה חלקה
+			initializeSmoothScrolling();
+			
+			// אנימציית סרגל ניווט בגלילה
+			initializeNavbarScroll();
+			
+			// אנימציות גלילה נוספות
+			initializeScrollAnimations();
+		});
+
+		/**
+		 * פונקציה ליצירת חלקיקי רקע
+		 */
+		function createParticles() {
+			const particlesContainer = document.getElementById('particles-js');
+			if (!particlesContainer) return;
+			
+			// ניקוי הקונטיינר
+			particlesContainer.innerHTML = '';
+			
+			const particleCount = 70;
+			
+			for (let i = 0; i < particleCount; i++) {
+				const particle = document.createElement('div');
+				particle.className = 'particle';
+				
+				const size = Math.random() * 4 + 1;
+				particle.style.width = `${size}px`;
+				particle.style.height = `${size}px`;
+				particle.style.top = `${Math.random() * 100}%`;
+				particle.style.right = `${Math.random() * 100}%`;
+				particle.style.animationDuration = `${Math.random() * 15 + 5}s`;
+				particle.style.animationDelay = `${Math.random() * 5}s`;
+				
+				if (size > 3) {
+					particle.style.boxShadow = '0 0 10px 2px rgba(138, 92, 246, 0.5)';
+				}
+				
+				particlesContainer.appendChild(particle);
+			}
+		}
+
+		/**
+		 * הצגת הפרויקטים בגריד
+		 * @param {Array} projectsArray - מערך הפרויקטים
+		 * @param {string} category - קטגוריה לסינון (All מציג את כולם)
+		 */
+		function displayProjects(projectsArray, category = 'All') {
+			const projectsGrid = document.querySelector('.projects-grid');
+			if (!projectsGrid) return;
+			
+			// ניקוי הגריד
+			projectsGrid.innerHTML = '';
+			
+			// סינון פרויקטים לפי קטגוריה
+			const filteredProjects = category === 'All' 
+				? projectsArray 
+				: projectsArray.filter(project => project.category === category);
+			
+			// יצירת והוספת הכרטיסים
+			filteredProjects.forEach(project => {
+				const card = createProjectCard(project);
+				projectsGrid.appendChild(card);
+			});
+			
+			// הוספת מאזיני אירועים לכפתורים
+			attachActionListeners();
+			
+			// אנימציית טעינה
+			setTimeout(() => {
+				document.querySelectorAll('.project-card').forEach(card => {
+					card.style.opacity = '1';
+					card.style.transform = 'translateY(0)';
+				});
+			}, 100);
+		}
+
+		/**
+		 * יצירת כרטיס פרויקט
+		 * @param {Object} project - אובייקט פרויקט
+		 * @returns {HTMLElement} - אלמנט כרטיס
+		 */
+		function createProjectCard(project) {
+			const card = document.createElement('div');
+			card.className = 'project-card glowing-border';
+			card.dataset.category = project.category;
+			card.dataset.id = project.id;
+			card.style.opacity = '0';
+			card.style.transform = 'translateY(20px)';
+			
+			card.innerHTML = `
+				<div class="project-image-container">
+					<img src="${project.imageUrl}" alt="${project.title}" class="project-image">
+				</div>
+				<div class="project-content">
+					<span class="tag-badge">${project.categoryHebrew}</span>
+					<h3 class="project-title">${project.title}</h3>
+					<p class="project-description">${project.description}</p>
+					<a href="${project.projectUrl}" class="project-link animated-icon">לצפייה באתר</a>
+				</div>
+			`;
+	
+			/* card.innerHTML = `
+				<div class="project-image-container">
+					<img src="${project.imageUrl}" alt="${project.title}" class="project-image">
+				</div>
+				<div class="project-content">
+					<span class="tag-badge">${project.categoryHebrew}</span>
+					<h3 class="project-title">${project.title}</h3>
+					<p class="project-description">${project.description}</p>
+					<a href="${project.projectUrl}" class="project-link animated-icon">לצפייה באתר</a>
+					<div class="project-actions">
+						<button class="action-btn edit-btn animated-icon" data-id="${project.id}" title="ערוך פרויקט">
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+								fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round">
+								<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+								<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+							</svg>
+						</button>
+						<button class="action-btn delete-btn animated-icon" data-id="${project.id}" title="מחק פרויקט">
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+								fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round">
+								<polyline points="3 6 5 6 21 6"></polyline>
+								<path
+									d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+								</path>
+							</svg>
+						</button>
+					</div>
+				</div>
+			`; */
+			
+			return card;
+		}
+
+		/**
+		 * הוספת מאזיני אירועים לכפתורי הפעולה
+		 */
+		function attachActionListeners() {
+			// כפתורי עריכה
+			document.querySelectorAll('.edit-btn').forEach(btn => {
+				btn.addEventListener('click', function() {
+					const projectId = this.dataset.id;
+					openEditModal(projectId);
+				});
+			});
+			
+			// כפתורי מחיקה
+			document.querySelectorAll('.delete-btn').forEach(btn => {
+				btn.addEventListener('click', function() {
+					const projectId = this.dataset.id;
+					openDeleteModal(projectId);
+				});
+			});
+		}
+
+		/**
+		 * אתחול טאבים לקטגוריות
+		 */
+		function initializeTabs() {
+			const tabs = document.querySelectorAll('.tab');
+			
+			tabs.forEach(tab => {
+				tab.addEventListener('click', function() {
+					// הסרת הסימון הפעיל מכל הטאבים
+					tabs.forEach(t => t.classList.remove('active'));
+					
+					// סימון הטאב הנוכחי כפעיל
+					this.classList.add('active');
+					
+					// סינון והצגת הפרויקטים
+					const category = this.dataset.category;
+					displayProjects(projects, category);
+				});
+			});
+		}
+
+		/**
+		 * אתחול המודאלים
+		 */
+		function initializeModals() {
+			const addProjectBtn = document.querySelector('.add-project-btn');
+			const closeModalButtons = document.querySelectorAll('.close-modal');
+			const addProjectForm = document.getElementById('add-project-form');
+			const editProjectForm = document.getElementById('edit-project-form');
+			const confirmDeleteBtn = document.getElementById('confirm-delete');
+			const cancelDeleteBtn = document.getElementById('cancel-delete');
+			const modals = document.querySelectorAll('.modal');
+			
+			// פתיחת מודאל הוספת פרויקט
+			if (addProjectBtn) {
+				addProjectBtn.addEventListener('click', function() {
+					openModal('add-project-modal');
+				});
+			}
+			
+			// סגירת מודאלים בלחיצה על X
+			closeModalButtons.forEach(btn => {
+				btn.addEventListener('click', function() {
+					const modal = this.closest('.modal');
+					closeModal(modal);
+				});
+			});
+			
+			// סגירת מודאלים בלחיצה מחוץ לתוכן
+			modals.forEach(modal => {
+				modal.addEventListener('click', function(e) {
+					if (e.target === this) {
+						closeModal(this);
+					}
+				});
+			});
+			
+			// טיפול בטופס הוספת פרויקט
+			if (addProjectForm) {
+				addProjectForm.addEventListener('submit', function(e) {
+					e.preventDefault();
+					
+					// יצירת אובייקט פרויקט חדש
+					const newProject = {
+						title: document.getElementById('project-title').value,
+						category: document.getElementById('project-category').value,
+						categoryHebrew: getCategoryTextHebrew(document.getElementById('project-category').value),
+						description: document.getElementById('project-description').value,
+						imageUrl: document.getElementById('project-image').value,
+						projectUrl: document.getElementById('project-url').value
+					};
+					
+					// הוספת הפרויקט למערך
+					addProject(newProject);
+					
+					// איפוס הטופס וסגירת המודאל
+					this.reset();
+					closeModal(document.getElementById('add-project-modal'));
+					
+					// הודעת הצלחה
+					showNotification('הפרויקט נוסף בהצלחה!', 'success');
+				});
+			}
+			
+			// טיפול בטופס עריכת פרויקט
+			if (editProjectForm) {
+				editProjectForm.addEventListener('submit', function(e) {
+					e.preventDefault();
+					
+					const projectId = document.getElementById('edit-project-id').value;
+					
+					// יצירת אובייקט עם הנתונים המעודכנים
+					const updatedProject = {
+						title: document.getElementById('edit-project-title').value,
+						category: document.getElementById('edit-project-category').value,
+						categoryHebrew: getCategoryTextHebrew(document.getElementById('edit-project-category').value),
+						description: document.getElementById('edit-project-description').value,
+						imageUrl: document.getElementById('edit-project-image').value,
+						projectUrl: document.getElementById('edit-project-url').value
+					};
+					
+					// עדכון הפרויקט
+					updateProject(projectId, updatedProject);
+					
+					// סגירת המודאל
+					closeModal(document.getElementById('edit-project-modal'));
+					
+					// הודעת הצלחה
+					showNotification('הפרויקט עודכן בהצלחה!', 'success');
+				});
+			}
+			
+			// אישור מחיקת פרויקט
+			if (confirmDeleteBtn) {
+				confirmDeleteBtn.addEventListener('click', function() {
+					if (window.projectToDelete) {
+						// מחיקת הפרויקט
+						deleteProject(window.projectToDelete);
+						
+						// סגירת המודאל
+						closeModal(document.getElementById('delete-project-modal'));
+						
+						// איפוס המשתנה
+						window.projectToDelete = null;
+						
+						// הודעת הצלחה
+						showNotification('הפרויקט נמחק בהצלחה!', 'success');
+					}
+				});
+			}
+			
+			// ביטול מחיקת פרויקט
+			if (cancelDeleteBtn) {
+				cancelDeleteBtn.addEventListener('click', function() {
+					closeModal(document.getElementById('delete-project-modal'));
+					window.projectToDelete = null;
+				});
+			}
+		}
+
+		/**
+		 * פתיחת מודאל לפי ID
+		 * @param {string} modalId - מזהה המודאל לפתיחה
+		 */
+		function openModal(modalId) {
+			const modal = document.getElementById(modalId);
+			if (modal) {
+				modal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
+		}
+
+		/**
+		 * סגירת מודאל
+		 * @param {HTMLElement} modal - אלמנט המודאל לסגירה
+		 */
+		function closeModal(modal) {
+			if (modal) {
+				modal.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+		}
+
+		/**
+		 * הצגת מודאל העריכה ומילוי הנתונים
+		 * @param {string} projectId - מזהה הפרויקט לעריכה
+		 */
+		function openEditModal(projectId) {
+			// מציאת הפרויקט לפי מזהה
+			const project = projects.find(p => p.id === projectId);
+			
+			if (project) {
+				// מילוי שדות הטופס
+				document.getElementById('edit-project-id').value = project.id;
+				document.getElementById('edit-project-title').value = project.title;
+				document.getElementById('edit-project-category').value = project.category;
+				document.getElementById('edit-project-description').value = project.description;
+				document.getElementById('edit-project-image').value = project.imageUrl;
+				document.getElementById('edit-project-url').value = project.projectUrl;
+				
+				// פתיחת המודאל
+				openModal('edit-project-modal');
+			}
+		}
+
+		/**
+		 * פתיחת מודאל המחיקה
+		 * @param {string} projectId - מזהה הפרויקט למחיקה
+		 */
+		function openDeleteModal(projectId) {
+			window.projectToDelete = projectId;
+			openModal('delete-project-modal');
+		}
+
+		/**
+		 * הוספת פרויקט חדש
+		 * @param {Object} project - נתוני הפרויקט החדש
+		 */
+		function addProject(project) {
+			// יצירת מזהה דינמי לפרויקט
+			const categoryProjects = projects.filter(p => p.category === project.category);
+			const categoryNumber = categoryProjects.length + 1;
+			project.id = `${project.category}-${categoryNumber}`;
+			
+			// הוספה למערך
+			projects.push(project);
+			
+			// הצגה מחדש
+			displayProjects(projects);
+		}
+
+		/**
+		 * עדכון פרויקט קיים
+		 * @param {string} projectId - מזהה הפרויקט
+		 * @param {Object} updatedData - נתונים מעודכנים
+		 */
+		function updateProject(projectId, updatedData) {
+			const index = projects.findIndex(p => p.id === projectId);
+			
+			if (index !== -1) {
+				// שמירת הקטגוריה הקודמת
+				const oldCategory = projects[index].category;
+				
+				// עדכון נתוני הפרויקט
+				projects[index] = {
+					...projects[index],
+					...updatedData
+				};
+				
+				// אם הקטגוריה השתנתה, יש לעדכן את המזהים
+				if (oldCategory !== updatedData.category) {
+					regenerateProjectIds();
+				}
+				
+				// הצגה מחדש
+				displayProjects(projects);
+			}
+		}
+
+		/**
+		 * מחיקת פרויקט
+		 * @param {string} projectId - מזהה הפרויקט למחיקה
+		 */
+		function deleteProject(projectId) {
+			const index = projects.findIndex(p => p.id === projectId);
+			
+			if (index !== -1) {
+				// מחיקה מהמערך
+				projects.splice(index, 1);
+				
+				// עדכון מזהים
+				regenerateProjectIds();
+				
+				// הצגה מחדש
+				displayProjects(projects);
+			}
+		}
+
+		/**
+		 * עדכון מזהים של כל הפרויקטים
+		 */
+		function regenerateProjectIds() {
+			// מיון לפי קטגוריות
+			const categories = {};
+			
+			// איסוף פרויקטים לפי קטגוריה
+			projects.forEach(project => {
+				if (!categories[project.category]) {
+					categories[project.category] = [];
+				}
+				categories[project.category].push(project);
+			});
+			
+			// עדכון המזהים לפי קטגוריה ומיקום
+			Object.keys(categories).forEach(category => {
+				categories[category].forEach((project, index) => {
+					project.id = `${category}-${index + 1}`;
+				});
+			});
+		}
+
+		/**
+		 * המרת קוד קטגוריה לשם בעברית
+		 * @param {string} category - קוד קטגוריה
+		 * @returns {string} - שם קטגוריה בעברית
+		 */
+		function getCategoryTextHebrew(category) {
+			const categories = {
+				'Finance': 'פיננסי',
+				'KnowledgeBase': 'מקורות ידע',
+				'Games': 'משחקים',
+				'Private': 'אישי',
+				'General': 'כללי'
+			};
+			
+			return categories[category] || 'אחר';
+		}
+
+		/**
+		 * הצגת הודעה
+		 * @param {string} message - תוכן ההודעה
+		 * @param {string} type - סוג ההודעה (success, error, info)
+		 */
+		function showNotification(message, type = 'info') {
+			// הסרת הודעה קודמת
+			const existingNotification = document.querySelector('.notification');
+			if (existingNotification) {
+				existingNotification.remove();
+			}
+			
+			// יצירת הודעה חדשה
+			const notification = document.createElement('div');
+			notification.className = `notification ${type}`;
+			notification.innerHTML = `
+				<div class="notification-content">
+					<span>${message}</span>
+					<button class="notification-close">&times;</button>
+				</div>
+			`;
+			
+			// הוספה למסמך
+			document.body.appendChild(notification);
+			
+			// הגדרת סגירה אוטומטית
+			setTimeout(() => {
+				notification.style.opacity = '0';
+				setTimeout(() => {
+					notification.remove();
+				}, 300);
+			}, 3000);
+			
+			// סגירה בלחיצה על כפתור
+			const closeBtn = notification.querySelector('.notification-close');
+			closeBtn.addEventListener('click', function() {
+				notification.style.opacity = '0';
+				setTimeout(() => {
+					notification.remove();
+				}, 300);
+			});
+		}
+
+		/**
+		 * אתחול תפריט נייד
+		 */
+		function initializeMobileMenu() {
+			const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+			const mobileMenu = document.querySelector('.mobile-menu');
+			const mobileMenuClose = document.querySelector('.mobile-menu-close');
+			const overlay = document.querySelector('.overlay');
+			const mobileLinks = document.querySelectorAll('.mobile-nav-link a');
+			
+			// פתיחת תפריט
+			if (mobileMenuBtn && mobileMenu) {
+				mobileMenuBtn.addEventListener('click', function() {
+					mobileMenu.classList.add('active');
+					overlay.classList.add('active');
+					document.body.style.overflow = 'hidden';
+				});
+			}
+			
+			// פונקציה לסגירת התפריט
+			function closeMobileMenu() {
+				mobileMenu.classList.remove('active');
+				overlay.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+			
+			// סגירה בכפתור X
+			if (mobileMenuClose) {
+				mobileMenuClose.addEventListener('click', closeMobileMenu);
+			}
+			
+			// סגירה בלחיצה על הרקע
+			if (overlay) {
+				overlay.addEventListener('click', closeMobileMenu);
+			}
+			
+			// סגירה בלחיצה על קישור
+			mobileLinks.forEach(link => {
+				link.addEventListener('click', closeMobileMenu);
+			});
+		}
+
+		/**
+		 * אתחול גלילה חלקה לעוגנים
+		 */
+		function initializeSmoothScrolling() {
+			const scrollLinks = document.querySelectorAll('a[href^="#"]');
+			
+			scrollLinks.forEach(link => {
+				link.addEventListener('click', function(e) {
+					const targetId = this.getAttribute('href');
+					
+					if (targetId === '#') return;
+					
+					e.preventDefault();
+					
+					const targetElement = document.querySelector(targetId);
+					
+					if (targetElement) {
+						const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+						const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+						
+						window.scrollTo({
+							top: targetPosition,
+							behavior: 'smooth'
+						});
+					}
+				});
+			});
+		}
+
+		/**
+		 * אתחול אנימציית נאבבר בגלילה
+		 */
+		function initializeNavbarScroll() {
+			const navbar = document.querySelector('.navbar');
+			
+			if (navbar) {
+				window.addEventListener('scroll', function() {
+					const scrollPosition = window.scrollY;
+					
+					if (scrollPosition > 100) {
+						navbar.style.backgroundColor = 'rgba(22, 22, 26, 0.95)';
+						navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+					} else {
+						navbar.style.backgroundColor = 'rgba(22, 22, 26, 0.8)';
+						navbar.style.boxShadow = 'none';
+					}
+				});
+			}
+		}
+
+		/**
+		 * אתחול אנימציות גלילה נוספות
+		 */
+		function initializeScrollAnimations() {
+			const animatedElements = document.querySelectorAll('.section-title, .tabs');
+			
+			function checkIfInView() {
+				const windowHeight = window.innerHeight;
+				const windowTop = window.scrollY;
+				const windowBottom = windowTop + windowHeight;
+				
+				animatedElements.forEach(element => {
+					const elementTop = element.getBoundingClientRect().top + windowTop;
+					const elementBottom = elementTop + element.offsetHeight;
+					
+					if (elementBottom > windowTop && elementTop < windowBottom) {
+						element.classList.add('visible');
+					}
+				});
+			}
+			
+			// הוספת מחלקת fadeIn לאלמנטים
+			animatedElements.forEach(element => {
+				element.classList.add('fadeIn');
+			});
+			
+			// הפעלת בדיקה בגלילה
+			window.addEventListener('scroll', checkIfInView);
+			
+			// בדיקה ראשונית
+			checkIfInView();
+		}
+	</script>
+</body>
+
+</html>
